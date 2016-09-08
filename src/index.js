@@ -1,8 +1,15 @@
 'use strict';
 var Alexa = require("alexa-sdk");
 var appId = ''; //'amzn1.echo-sdk-ams.app.your-skill-id';
+var AWS = require('aws-sdk');
 
 exports.handler = function(event, context, callback) {
+    AWS.config.update ({
+        accessKeyId: 'akid',
+        secretAccessKey: 'secret',
+        region: "us-east-1"
+    });
+
     var alexa = Alexa.handler(event, context);
     alexa.appId = appId;
     alexa.dynamoDBTableName = 'highLowGuessUsers';
